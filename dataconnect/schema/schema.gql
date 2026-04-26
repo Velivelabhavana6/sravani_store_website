@@ -1,0 +1,55 @@
+type User @table {
+  displayName: String!
+  email: String!
+  createdAt: Timestamp!
+  photoUrl: String
+  organization: String
+}
+
+type Material @table {
+  user: User!
+  name: String!
+  type: String!
+  createdAt: Timestamp!
+  updatedAt: Timestamp!
+  description: String
+  chemicalFormula: String
+  isPublic: Boolean
+}
+
+type Property @table {
+  material: Material!
+  name: String!
+  value: String!
+  unit: String!
+  createdAt: Timestamp!
+  temperature: Float
+  pressure: Float
+  testMethod: String
+}
+
+type ProcessingStep @table {
+  material: Material!
+  name: String!
+  order: Int!
+  createdAt: Timestamp!
+  description: String
+  duration: Int64
+  temperature: Float
+}
+
+type Project @table {
+  user: User!
+  name: String!
+  createdAt: Timestamp!
+  updatedAt: Timestamp!
+  description: String
+  isPublic: Boolean
+}
+
+type ProjectMaterial @table(key: ["project", "material"]) {
+  project: Project!
+  material: Material!
+  addedAt: Timestamp!
+  notes: String
+}

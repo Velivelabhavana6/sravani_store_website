@@ -1,0 +1,45 @@
+﻿import { useEffect, useState } from "react";
+import { subscribeToProducts } from "../services/productService";
+
+const useProducts = () => {
+  const [products, setProducts] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState("");
+
+  useEffect(() => {
+    let unsubscribe;
+
+    const start = async () => {
+      try {
+        unsubscribe = await subscribeToProducts(
+          (nextProducts) => {
+            setProducts(nextProducts);
+            setLoading(false);
+            setError("");
+          },
+          (err) => {
+            console.error("Failed to subscribe to products", err);
+            setError("Could not load products right now.");
+            setLoading(false);
+          }
+        );
+      } catch (err) {
+        console.error("Failed to start product subscription", err);
+        setError("Could not load products right now.");
+        setLoading(false);
+      }
+    };
+
+    start();
+
+    return () => {
+      if (unsubscribe) {
+        unsubscribe();
+      }
+    };
+  }, []);
+
+  return { products, loading, error };
+};
+
+export default useProducts;

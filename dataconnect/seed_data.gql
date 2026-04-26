@@ -1,0 +1,56 @@
+mutation SeedData @transaction @auth(level: USER, insecureReason: "This is a seed data mutation and should only be run by authenticated administrators or during development.") {
+  user_insertMany(data: [
+    {
+      uid: "user1_uid_example",
+      username: "Alice",
+      email: "alice@example.com",
+      createdAt: "2024-01-01T10:00:00Z",
+      avatarUrl: "https://example.com/alice_avatar.jpg",
+      bio: "Software Engineer"
+    },
+    {
+      uid: "user2_uid_example",
+      username: "Bob",
+      email: "bob@example.com",
+      createdAt: "2024-01-02T11:00:00Z",
+      avatarUrl: "https://example.com/bob_avatar.jpg",
+      bio: "Product Manager"
+    }
+  ])
+  product_insertMany(data: [
+    {
+      productId: "product1_id_example",
+      name: "Laptop Pro",
+      description: "Powerful laptop for professionals",
+      price: 1200.00,
+      stockQuantity: 50,
+      imageUrl: "https://example.com/laptop_pro.jpg",
+      category: "Electronics"
+    },
+    {
+      productId: "product2_id_example",
+      name: "Wireless Headphones",
+      description: "Noise-cancelling wireless headphones",
+      price: 150.00,
+      stockQuantity: 100,
+      imageUrl: "https://example.com/headphones.jpg",
+      category: "Accessories"
+    }
+  ])
+  order_insertMany(data: [
+    {
+      orderId: "order1_id_example",
+      userId_expr: "user1_uid_example",
+      orderDate: "2024-01-05T14:30:00Z",
+      totalAmount: 1350.00,
+      status: "Processing"
+    },
+    {
+      orderId: "order2_id_example",
+      userId_expr: "user2_uid_example",
+      orderDate: "2024-01-06T09:00:00Z",
+      totalAmount: 1200.00,
+      status: "Shipped"
+    }
+  ])
+}

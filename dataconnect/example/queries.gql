@@ -1,0 +1,43 @@
+# Operation 1: Get all products
+query AllProducts @auth(level: PUBLIC, insecureReason: "This operation is safe to expose to the public") {
+  products {
+    productId
+    name
+    description
+    price
+    imageUrl
+  }
+}
+
+# Operation 2: Get a single product by its ID
+query ProductById($productId: String!) @auth(level: PUBLIC, insecureReason: "This operation is safe to expose to the public") {
+  product(productId: $productId) {
+    productId
+    name
+    description
+    price
+    imageUrl
+  }
+}
+
+# Operation 3: Create a new user (assuming a 'User' type in your schema)
+mutation CreateNewUser($userId: String!, $email: String!, $displayName: String!) @auth(level: USER, insecureReason: "This operation is safe to expose to all logged in users.") {
+  user_insert(data: {
+    userId: $userId,
+    email: $email,
+    displayName: $displayName
+  })
+}
+
+# Operation 4: Get items in the current user's cart (assuming a 'Cart' type related to 'User')
+query MyCart @auth(level: USER, insecureReason: "This operation is safe to expose to all logged in users.") {
+  carts(where: {userId: {eq_expr: "auth.uid"}}) {
+    cartId
+    product {
+      productId
+      name
+      price
+    }
+    quantity
+  }
+}
