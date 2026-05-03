@@ -105,20 +105,10 @@ const ProductDetails = () => {
   };
 
   return (
-    <div style={{ display: "flex", justifyContent: "center", marginTop: "40px" }}>
-      <div
-        style={{
-          display: "flex",
-          gap: "40px",
-          background: "white",
-          padding: "30px",
-          borderRadius: "15px",
-          boxShadow: "0 4px 15px rgba(0,0,0,0.1)",
-          position: "relative",
-        }}
-      >
+    <div className="product-container">
+      <div className="product-box product-box-details">
         {product.inStock === false && <div className="product-stock-overlay details-overlay">Out of Stock</div>}
-        <img src={product.image} alt={product.name} loading="lazy" style={{ width: "300px", borderRadius: "10px" }} />
+        <img src={product.image} alt={product.name} loading="lazy" className="product-details-image" />
 
         <div className="product-details-panel">
           <h2>{product.name}</h2>

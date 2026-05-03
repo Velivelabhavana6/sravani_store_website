@@ -1,9 +1,16 @@
 /* RESET */
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;700&family=Playfair+Display:wght@500;700&display=swap');
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
 body {
   margin: 0;
   font-family: "Poppins", sans-serif;
   background: #f9f7fb;
+  overflow-x: hidden;
 }
 
 /* smooth animation */
@@ -158,11 +165,29 @@ body {
   padding: 30px;
   border-radius: 15px;
   box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+  width: min(1100px, calc(100% - 32px));
+  margin: 0 auto;
+  flex-wrap: wrap;
 }
 
 .product-box img {
   width: 300px;
   border-radius: 10px;
+  max-width: 100%;
+  height: auto;
+}
+
+.product-box-details {
+  position: relative;
+}
+
+.product-details-image {
+  width: 300px;
+  border-radius: 10px;
+  max-width: 100%;
+  height: auto;
+  object-fit: cover;
+  flex: 0 1 300px;
 }
 
 /* ================= HERO ================= */
@@ -260,7 +285,10 @@ body {
   width: 350px;
   height: 350px;
   object-fit: cover;
-  border-radius: 50%;   /* 👈 circle image */
+  border-radius: 50%;
+  width: min(350px, 100%);
+  height: auto;
+  aspect-ratio: 1 / 1;
 }
 
 /* CARDS */
@@ -278,7 +306,7 @@ body {
   text-align: center;
 }
 .contact-img {
-  width: 320px;
+  width: min(320px, 100%);
   border-radius: 20px;
   object-fit: cover;
 
@@ -288,7 +316,9 @@ body {
 }
 /* BACKGROUND */
 .landing-bg {
-  height: 90vh;
+  min-height: 90vh;
+  height: auto;
+  padding: 24px 0;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -297,13 +327,15 @@ body {
 }
 
 .landing-card {
-  width: 900px;
+  width: min(900px, calc(100% - 32px));
   padding: 50px;
   border-radius: 25px;
 
   display: flex;
   justify-content: space-between;
   align-items: center;
+  gap: 28px;
+  flex-wrap: wrap;
 
   backdrop-filter: blur(20px);
   background: rgba(255, 255, 255, 0.6);
@@ -370,7 +402,8 @@ body {
 
 /* floating image */
 .landing-image img {
-  width: 250px;
+  width: min(260px, 70vw);
+  max-width: 100%;
   border-radius: 20px;
 
   animation: float 3s ease-in-out infinite;
@@ -648,6 +681,94 @@ body {
   .nav {
     margin-left: 0;
     gap: 16px;
+  }
+
+  .landing-card {
+    padding: 34px 24px;
+  }
+
+  .landing-text h1 {
+    font-size: 34px;
+  }
+}
+
+@media (max-width: 700px) {
+  .product-box {
+    padding: 18px;
+    gap: 18px;
+  }
+
+  .product-details-image,
+  .product-box img {
+    width: 100%;
+    max-width: 420px;
+    margin: 0 auto;
+  }
+
+  .product-details-panel {
+    min-width: 0;
+    width: 100%;
+  }
+}
+
+@media (max-width: 600px) {
+  .container {
+    padding: 16px;
+  }
+
+  .header {
+    padding: 14px 14px;
+    gap: 14px;
+  }
+
+  .nav {
+    width: 100%;
+    gap: 12px;
+    justify-content: flex-start;
+  }
+
+  .nav-link {
+    font-size: 0.98rem;
+  }
+
+  .hero {
+    margin-top: 48px;
+  }
+
+  .hero h1 {
+    font-size: 32px;
+  }
+
+  .contact-container {
+    padding: 20px 16px;
+  }
+
+  .contact-left h1 {
+    font-size: 32px;
+  }
+
+  .landing-bg {
+    padding: 18px 0;
+  }
+
+  .landing-card {
+    padding: 26px 18px;
+  }
+
+  .landing-text h1 {
+    font-size: 30px;
+  }
+
+  .landing-buttons {
+    flex-wrap: wrap;
+  }
+
+  .whatsapp-float {
+    right: 16px;
+    bottom: 16px;
+    width: 56px;
+    height: 56px;
+    font-size: 1.7rem;
   }
 }
 /* ================= PREMIUM FOOTER ================= */

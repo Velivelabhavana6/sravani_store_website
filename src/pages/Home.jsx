@@ -15,7 +15,7 @@ const Home = () => {
 
           <p>Elegant jewellery & craft materials curated with love</p>
 
-          <div className="buttons">
+          <div className="landing-buttons">
             <button className="btn" onClick={() => navigate("/products")}>Explore</button>
             <button className="btn-outline" onClick={() => navigate("/contact")}>Contact</button>
           </div>
